@@ -895,6 +895,15 @@ class Bending(object):
 
     @staticmethod
     def __yb(gear):
+        """ Rim thickness factor, yb
+        Where the rim thickness is not sufficient to provide full support for 
+        the tooth root, the location of bendingfatigue failure may be through 
+        the gear rim, rather than at the root fillet. The rim thickness factor
+        yb is a simplified factor used to de-rate thin rimmed gears when 
+        detailed calculations of stresses in both tension andcompression or 
+        experience are not available. 
+        For critically loaded applications this method should be replacedby a
+         more comprehensive analysis."""
         sr = gear.sr
         h = gear.h
         
