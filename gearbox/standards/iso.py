@@ -369,7 +369,7 @@ def __kha__(pair):
 
     var = __var__(pair)
 
-    if epsilonbeta is 0:
+    if epsilonbeta == 0:
         zepsilon = sqrt((4 - epsilonalpha) / 3)
     elif 1 > epsilonbeta > 0:
         zepsilon = sqrt(((4 - epsilonalpha) / 3) * (1 - epsilonbeta) + (epsilonbeta / epsilonalpha))
@@ -515,7 +515,7 @@ class Pitting(object):
         m2 = tan(alpha_wt) / sqrt((sqrt((da_two ** 2 / db_two ** 2) - 1) - (2 * pi) / z_two) * (
             sqrt((da_one ** 2 / db_one ** 2) - 1) - (epsilon_alpha - 1) * (2 * pi) / z_one))
 
-        if beta is 0:
+        if beta == 0:
             if epsilon_alpha > 1:
                 if m1 <= 1:
                     zb = 1
@@ -560,7 +560,7 @@ class Pitting(object):
         epsilon_alpha = pair.epsilon_alpha
         epsilon_beta = pair.epsilon_beta
 
-        if epsilon_beta is 0:
+        if epsilon_beta == 0:
             return sqrt((4 - epsilon_alpha) / 3)
         elif 1 > epsilon_beta > 0:
             return sqrt(((4 - epsilon_alpha) / 3) * (1 - epsilon_beta) + (epsilon_beta / epsilon_alpha))

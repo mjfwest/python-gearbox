@@ -257,12 +257,14 @@ class Transmission(object):
         self.pair = self.__calculate(gears[0], gears[1], self.rpm_in, self.rpm_out)
 
     def __calculate(self, gear_one, gear_two, rpm_in, rpm_out):
-        if gear_one.m is not gear_two.m:
+        if gear_one.m != gear_two.m:
+            #TODO change these to assertations. 
             raise Exception("the modulus of the two gears most be equal")
         else:
             self.m = gear_one.m
 
-        if gear_one.alpha is not gear_two.alpha:
+        if gear_one.alpha != gear_two.alpha:
+            #TODO change these to assertations. 
             raise Exception("the pressure angle of the two gears most be equal")
         else:
             self.alpha = gear_one.alpha
