@@ -7,7 +7,9 @@ from jinja2 import Environment, FileSystemLoader
 import gearbox
 from gearbox.libs.gearprofile import GearExport
 from gearbox.libs.maths import rotate, involute, arcinvolute
+import platform
 
+OperatingSystem = platform.uname()[0]
 
 class ExportGear(object):
     """
@@ -50,12 +52,13 @@ class ExportGear(object):
             raise ValueError('type must be \'2D\' or \'3D\' default Value is \'2D\'')
 
         model_name = model_name.replace(' ', '_')
-        output_folder = output_folder.replace('/', '\\')
+        if OperatingSystem=="Windows":
+            output_folder = output_folder.replace('/', '\\')
 
         output_from_parsed_template = template.render(gear=self.gear.export_data.gear, model_name=model_name,
                                                       model_path=output_folder)
 
-        with open(output_folder + '/' + model_name + '.m', "wb") as fh:
+        with open(output_folder + '/' + model_name + '.m', "w") as fh:
             fh.write(output_from_parsed_template)
 
     def abaqus(self, output_folder='', model_name='model', type='2D'):
@@ -75,12 +78,13 @@ class ExportGear(object):
             raise ValueError('type must be \'2D\' or \'3D\' default Value is \'2D\'')
 
         model_name = model_name.replace(' ', '_')
-        output_folder = output_folder.replace('/', '\\')
+        if OperatingSystem=="Windows":
+            output_folder = output_folder.replace('/', '\\')
 
         output_from_parsed_template = template.render(gear=self.gear.export_data.gear, model_name=model_name,
                                                       model_path=output_folder)
 
-        with open(output_folder + '/' + model_name + '.py', "wb") as fh:
+        with open(output_folder + '/' + model_name + '.py', "w") as fh:
             fh.write(output_from_parsed_template)
 
     def ansys(self, output_folder='', model_name='model', type='2D'):
@@ -100,7 +104,8 @@ class ExportGear(object):
             raise ValueError('type must be \'2D\' or \'3D\' default Value is \'2D\'')
 
         model_name = model_name.replace(' ', '_')
-        output_folder = output_folder.replace('/', '\\')
+        if OperatingSystem=="Windows":
+            output_folder = output_folder.replace('/', '\\')
 
         final = []
         for i in self.gear.export_data.gear.formcoords:
@@ -114,7 +119,7 @@ class ExportGear(object):
         output_from_parsed_template = template.render(gear=self.gear.export_data.gear, model_name=model_name,
                                                       model_path=output_folder)
 
-        with open(output_folder + '/' + model_name + '.js', "wb") as fh:
+        with open(output_folder + '/' + model_name + '.js', "w") as fh:
             fh.write(output_from_parsed_template)
 
 
@@ -168,7 +173,7 @@ class ExportPair(object):
 
         output_from_parsed_template = template.render(pair=pair, model_name=model_name, model_path=output_folder)
 
-        with open(output_folder + '/' + model_name + '.m', "wb") as fh:
+        with open(output_folder + '/' + model_name + '.m', "w") as fh:
             fh.write(output_from_parsed_template)
 
     def abaqus(self, output_folder='', model_name='model', type='2D'):
@@ -192,7 +197,7 @@ class ExportPair(object):
 
         output_from_parsed_template = template.render(pair=pair, model_name=model_name, model_path=output_folder)
 
-        with open(output_folder + '/' + model_name + '.py', "wb") as fh:
+        with open(output_folder + '/' + model_name + '.py', "w") as fh:
             fh.write(output_from_parsed_template)
 
     def ansys(self, output_folder='', model_name='model', type='2D'):
@@ -231,7 +236,7 @@ class ExportPair(object):
         model_name = model_name.replace(' ', '_')
         output_from_parsed_template = template.render(pair=pair, model_name=model_name, model_path=output_folder)
 
-        with open(output_folder + '/' + model_name + '.js', "wb") as fh:
+        with open(output_folder + '/' + model_name + '.js', "w") as fh:
             fh.write(output_from_parsed_template)
 
     def __aw(self):
